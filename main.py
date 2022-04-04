@@ -23,6 +23,11 @@ def start(n=2):
             other_node = nodes[j]
             node.connect_with_node(host, other_node.port)
 
+    print("Available commands:")
+    print("\t* List - List all nodes and their statuses")
+    print("\t* time-cs p - change the critical section timeout. timeout range [10, p]")
+    print("\t* time-p p - change the time-out interval. timeout range [5, p]")
+    print("\t* q - Quit")
     while True:
         command = input("Enter command, press q to exit: \n")
 
@@ -52,4 +57,8 @@ def start(n=2):
         node.stop()
 
 
-start(int(sys.argv[1]))
+if __name__ == '__main__':
+    if len(sys.argv) > 1:
+        start(int(sys.argv[1]))
+    else:
+        raise ValueError("Need to specifify n")
